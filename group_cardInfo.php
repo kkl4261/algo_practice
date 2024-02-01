@@ -37,7 +37,6 @@ function group(array $ownedCards){
     return $map;
 }
 
-
 function handleAccessor(&$accessor, $value) {
     if (!isset($accessor[$value])){
         $accessor[$value]['count'] = 0;
@@ -48,14 +47,14 @@ function handleAccessor(&$accessor, $value) {
 function countCards(string $missionId, array $map):int{
     $conditions = explode(',', $missionId);
     $count = 0;
-    $accessor = &$map;
+    $accessor = $map;
     foreach ($conditions as $condition) {
     	$condition = (int) $condition;
        if (!isset($accessor[$condition])){
         break;
        }
        $count = $accessor[$condition]['count'];
-       $accessor = &$accessor[$condition];
+       $accessor = $accessor[$condition];
     }
     return $count;
 }
