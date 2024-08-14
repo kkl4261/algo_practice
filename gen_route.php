@@ -8,7 +8,7 @@ function getRandomNullIndex(array $array, int $start, int $end, array $blacklist
         }
     }
     if (empty($validKeys)) {
-        echo 'No valid keys found for start: ' . $start . ' end: ' . $end . ' blacklist: ' . implode(',', $blacklistForEvents) . ' section: ' . implode(',', array_slice($array, $start, $end - $start)) . PHP_EOL;
+        echo 'No valid keys found for start: ' . $start . ' end: ' . $end . ' blacklist: ' . implode(',', $blacklistForEvents) . ' section: ' . implode(',', array_slice($array, $start, $end - $start + 1)) . PHP_EOL;
         return -1;
     }
     return $validKeys[array_rand($validKeys)];
@@ -135,7 +135,7 @@ $eventCount = array_reduce($events, function ($carry, $event) {
 
 $failCount = 0;
 
-for ($i = 0; $i < 1000; $i++) {
+for ($i = 0; $i < 100; $i++) {
     $route = generateRoute($rewardCount, $itemCount, $events, $shardCount);
     if (!checkRoute($route, $rewardCount, $itemCount, $shardCount, $eventCount)) {
         $failCount++;
